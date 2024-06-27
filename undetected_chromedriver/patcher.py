@@ -18,6 +18,7 @@ from urllib.request import urlopen
 from urllib.request import urlretrieve
 import zipfile
 from multiprocessing import Lock
+import secrets
 
 logger = logging.getLogger(__name__)
 
@@ -59,7 +60,7 @@ class Patcher(object):
         """
         self.force = force
         self._custom_exe_path = False
-        prefix = "undetected"
+        prefix = secrets.token_hex(8)
         self.user_multi_procs = user_multi_procs
 
         self.is_old_chromedriver = version_main and version_main <= 114
